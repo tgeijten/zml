@@ -28,9 +28,9 @@ parent {
   age = 12
   objects {
     digits = "1 2 3"
-    "more stuff" = 4
+    more-stuff = 4
   }
-  concise { first = single second = line }
+  concise { x = 10 y = 20 z = 30 }
 }
 ```
   

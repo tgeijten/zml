@@ -23,12 +23,14 @@ Well, here's an overview of what I don't like about existing languages:
 ## here's wat zml looks like
 Wihtout further ado, here's an example that shows everything there is to know about zml:
 ```
-<parent>
-  stuff = 1000
-  name = "My Name Has Spaces"
-  <inline_child name=louis name=dois name="space man"/>
-  /* A comment with a closing tag */
-  // A Single line comment
-</> // This is a closing tag for parent. It's optional to write as </parent>.
+parent {
+  name = "Billy the Kid"
+  age = 12
+  objects {
+    digits = "1 2 3"
+    "more stuff" = 4
+  }
+  concise { first = single second = line }
+}
 ```
   

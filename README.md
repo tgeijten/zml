@@ -1,32 +1,33 @@
 # ZML
-ZML is a fileformat for storing structured hierarchical data. It's designed with the following goals in mind:
+ZML is a file format for storing structured data. It's designed with the following goals in mind:
 1. Easy to read, write and edit
-2. Consise!
+2. Consise
 3. Easy to parse
-4. Datatype agnostic
+4. Type agnostic
 
 ## Why ZML?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
-Well, I've looked through many of them, and for all of them there's something I didn't like (I suppose I'm picky). Here are my gripes with popular existing languages:
+Well, I've looked through many of them, and for all of them there's something I didn't like (I suppose I'm picky). Here's my beef with some popular alternatives:
 
 #### XML
-* It's just too VERBOSE!
+* Verbose!
+* Hard to parse
 
-#### json
-* It's still not as concise as could be: the comma after each statement and the required quotes around each entry are annoying.
+#### JSON
+* Not as concise as could be, superfluous use of `,` and `"`
 * It's not type agnostic
-* The first two letters stand for 'javascript' (YUCK!)
+* The first two letters stand for 'javascript' (ugh)
 
 #### YAML
 Another attempt of making 
-* Pretty hard to parse
+* Hard to parse
 * I don't like the way it uses '-' for child nodes
 
 #### TOML
-* Not a fan of how child nodes are handles
+* I don't like how it uses `[parent.child]` for child nodes, not suitable for deep hierarchies
 
-## here's wat zml looks like
+## Example
 Wihtout further ado, here's an example that shows everything there is to know about zml:
 ```
 parent = {
@@ -39,4 +40,3 @@ parent = {
   concise = { x = 10 y = 20 z = 30 }
 }
 ```
-  

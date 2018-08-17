@@ -31,7 +31,6 @@ example {
 ```
 #include some_other_file.zml#some_node
 #include some_other_file.zml#some_node/some_child
-}
 ```
 
 Comments can be both single line and multi-line (similar to comments in C/C++):
@@ -43,7 +42,7 @@ example { // single line comment
     lucky = [ 1 12 67 ]
     concise { x = 10 y = 20 z = 30 }
   }
-  multi-line comment start */
+  multi-line comment end */
 }
 ```
 

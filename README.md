@@ -16,6 +16,12 @@ example {
 }
 ```
 
+If you want, zml can be made super-concise:
+```
+example{name="A Name With Spaces" age=42 hierarchy{lucky_numbers[1 12 67] concise{x=10 y=20 z=30}}
+```
+
+
 Some of zml's core qualities are:
 1. It's easy on the human eye
 2. Concise and clean

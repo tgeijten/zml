@@ -1,22 +1,25 @@
-# ZML
-ZML is a file format for storing structured data. It's designed with the following goals in mind:
-1. Easy to read, write and edit
-2. Consise
-3. Easy to parse
-4. Type agnostic
+# What is ZML?
+ZML is a human-readable file format for storing data. It's designed with the following goals in mind:
+1. Easy on the human eye
+2. Concise and practical
+3. Type agnostic
 
-## Why ZML?
+# Why ZML?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
 Well, I've looked through many of them, and for all of them there's something I didn't like (I suppose I'm picky). Here's my beef with some popular alternatives:
 
 #### XML
 * Verbose!
+* Not easy on the eyes
 * Hard to parse
 
 #### JSON
-* Not as concise as could be, superfluous use of `,` and `"`
-* It's not type agnostic
+* Not as concise as could be -- there's a lot of superfluous use of `,` and `"`
+* The first two letters stand for 'javascript' (ugh)
+
+#### CSON
+* Not as concise as could be -- there's a lot of superfluous use of `,` and `"`
 * The first two letters stand for 'javascript' (ugh)
 
 #### YAML
@@ -27,16 +30,16 @@ Another attempt of making
 #### TOML
 * I don't like how it uses `[parent.child]` for child nodes, not suitable for deep hierarchies
 
-## Example
+# What does it look like?
 Wihtout further ado, here's an example that shows everything there is to know about zml:
 ```
-parent = {
+parent {
   name = "A Name With Spaces"
-  age = 12
-  children = {
-    array = [ 1 2 3 ]
-    more-stuff = 4 ; this is a comment!
+  age = 42 // this is a comment!
+  children {
+    an array = [ 1 2 3 ] // the '=' is optional!
   }
-  concise = { x = 10 y = 20 z = 30 }
+  super_concise { x = 10 y = 20 z = 30 } // multiple values on one row
+  #include other_file.zml
 }
 ```

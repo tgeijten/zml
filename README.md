@@ -12,31 +12,25 @@ example {
 }
 ```
 
-If you want, ZML can be made super-concise without changing any of the grammar rules:
+ZML can be made super-concise without changing any of parsing rules:
 ```
 example{name="A Name With Spaces" age=42 hierarchy{lucky[1 12 67] concise{x=10 y=20 z=30}}
 ```
 
-ZML has language-level support for including other files at any place in the hierarchy:
+ZML has language-level support for *including or merging other files* at any place in the hierarchy:
 ```
 example {
-  some_data = 99
-  #include some_other_file.zml
-}
-```
-
-ZML also allows merging of data from other files, great for defining defaults in another file:
-```
-example {
-  #merge default_values.zml
+  #include some_other_file.zml // values are inserted
+  #merge default_values.zml // data from other file is inserted, skipping all existing nodes
+  #replace overwrite_values.zml // values are inserted, replacing all existing nodes
   some_data = 99
 }
 ```
 
-Both #include and #merge can be used to import a specific node:
+#include, #merge and #replace can be used to import children of a specific node from another file:
 ```
 #include some_other_file.zml#some_node
-#merge some_other_file.zml#some_node/some_child
+#include some_other_file.zml#some_node/some_child
 }
 ```
 

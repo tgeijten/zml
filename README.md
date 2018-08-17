@@ -52,10 +52,12 @@ Finally, special characters are supported through backslashes and quotes, and mu
 example {
   name = "These characters need to be placed in quotes: {}[]#//"
   special = "Special \"characters\" require a \\"
-  formatting = "Multi-line formatting is also supported. Just continue typing
-                on the next line -- newline characters in quotes are transformed
-                into a single spaces on parsing. Actual newline characters can be
+  formatting = "Multi-line formatting is also supported - just continue typing
+                on the next line. When ZML is parsed, newline characters in quotes
+                are replaced with single spaces on parsing (along with any leading
+                or trailing white-space. Actual newline characters can be
                 inserted using \n."
+}
 ```
 
 # Why ZML?

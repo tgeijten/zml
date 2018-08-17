@@ -1,5 +1,5 @@
 # What is ZML?
-ZML is a human-readable file format for storing data. This is what it looks like:
+ZML is a concise yet human-readable file format for storing data. This is what it looks like:
 
 ```
 example {
@@ -12,12 +12,12 @@ example {
 }
 ```
 
-ZML can be made super-concise without changing any of parsing rules:
+When needed, ZML can be very space-efficient without changing any of parsing rules:
 ```
 example{name="A Name With Spaces" age=42 hierarchy{lucky[1 12 67] concise{x=10 y=20 z=30}}
 ```
 
-ZML has language-level support for *including or merging other files* at any place in the hierarchy:
+ZML has language-level support for *including or merging* other files at any place in the hierarchy:
 ```
 example {
   #include some_other_file.zml // values are inserted

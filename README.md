@@ -1,4 +1,4 @@
-# What is zml?
+# What is ZML?
 ZML is a human-readable file format for storing data. This is what it looks like:
 
 ```

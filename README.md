@@ -68,3 +68,12 @@ Yes, one would say so. But all alternatives have something not quite right:
 * **CSON** looks fine, but doesn't have any include options
 * **YAML** just to parse and doesn't look that great
 * **TOML** uses `[parent.child]` for child nodes, not suitable for deep hierarchies
+
+| Feature             | XML | JSON | YAML |
+| --------            | --- | ---- | ---- |
+| Easy on the eyes    |  -  | +    | ++   |
+| Concise             |  -  | +    | ++   |
+| Easy to edit        |  -  | +    | ++   |
+| Include other files | -   | +    | ++   |
+| Simple to parse     |  -  | +    | --   |
+

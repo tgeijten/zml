@@ -77,7 +77,7 @@ example {
 Yes, one would say so. But all alternatives have something not quite right:
 * **XML** is verbose as pandemonium and hard to edit
 * **JSON** is also not as concise as could be -- there's a lot of superfluous quotes and comma's
-* **CSON** looks fine, but doesn't have any include options
+* **CSON** Gets the idea, but still requires more quotes than needed and uses tab characters for grouping
 * **YAML** is a nightmare to parse and doesn't look that great
 * **TOML** uses `[parent.child]` for child nodes, not suitable for deep hierarchies
 
@@ -87,5 +87,5 @@ Yes, one would say so. But all alternatives have something not quite right:
 | Concise             | -   | +/-  | +    | ++   | +    | **++** |
 | Easy to edit        | -   | +    | ++   | ++   | +    | **++** |
 | Include other files | --  | --   | --   | --   | --   | **++** |
-| Simple to parse     | -   | ++   | --   | --   | ++   | **++** |
+| Simple to parse     | -   | +    | +/-  | --   | +    | **++** |
 

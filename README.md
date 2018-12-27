@@ -2,43 +2,46 @@
 ZML is a concise-yet-readable file format for storing data. This is what it looks like:
 
 ```
-# This is a comment
 example {
   name: "Spacy Name"
   age: 42
-  hierarchy {
+  properties {
     fruits [ apple pear banana ]
     position { x: 10 y: 20 z: 30 }
   }
 }
 ```
 
-When needed, ZML can become space-efficient without changing any of parsing rules:
-```
-example{name:"Spacy Name" age:42 hierarchy{fruits[apple pear banana] position{x:10 y:20 z:30}}
-```
-
 ZML has language-level support for *including* other files at any place in the hierarchy:
 ```
+# This is a comment
 example {
-  some_data = 99
-  <-- some_other_file.zml # values are inserted in place, in-between existing nodes
+  # Include values from another file
+  <-- some_other_file.zml 
 }
 ```
 
 To import children of a specific node from another file, use:
 ```
-<-- some_other_file.zml@some_node@3 // includes the third child of some_node
+# Includes the second child of example/properties
+<-- example.zml@example/properties/@2
 ```
 
 Previous values can be referenced to with the **@** character
 ```
-CONSTANT: 42
+my_constant: 42
 
 example
 {
-  important_value = @CONSTANT
+  important_value = @my_constant
 }
+
+another_important_value = @example/important_value
+```
+
+When needed, ZML can become space-efficient without changing any of parsing rules:
+```
+example{name:"Spacy Name" age:42 hierarchy{fruits[apple pear banana] position{x:10 y:20 z:30}}
 ```
 
 Comments can be both single line and multi-line (similar to comments in C/C++):

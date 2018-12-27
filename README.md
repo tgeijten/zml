@@ -2,6 +2,7 @@
 ZML is a concise-yet-readable file format for storing data. This is what it looks like:
 
 ```
+# This is a comment
 example {
   name: "Spacy Name"
   age: 42

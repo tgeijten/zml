@@ -3,46 +3,41 @@ ZML is a concise-yet-readable file format for storing data. This is what it look
 
 ```
 example {
-  name = "Name With Spaces"
-  age = 42 // this is a comment
+  name: "Spacy Name"
+  age: 42
   hierarchy {
-    lucky = [ 1 12 67 ]
-    position { x = 10 y = 20 z = 30 }
+    fruits [ apple pear banana ]
+    position { x: 10 y: 20 z: 30 }
   }
 }
 ```
 
 When needed, ZML can become space-efficient without changing any of parsing rules:
 ```
-example{name="Name With Spaces" age=42 hierarchy{lucky[1 12 67] concise{x=10 y=20 z=30}}
+example{name:"Spacy Name" age:42 hierarchy{fruits[apple pear banana] position{x:10 y:20 z:30}}
 ```
 
-ZML has language-level support for *including or merging* other files at any place in the hierarchy:
+ZML has language-level support for *including* other files at any place in the hierarchy:
 ```
 example {
   some_data = 99
-  #include some_file.zml // values are inserted in place, in-between existing nodes
-  #merge some_other_file.zml // values are inserted, skipping all existing nodes (great for defaults)
-  #replace yet_another_file.zml // values are inserted, replacing all existing nodes
+  <-- some_other_file.zml # values are inserted in place, in-between existing nodes
 }
 ```
 
-**#include**, **#merge** and **#replace** can be used to import children of a specific node from another file:
+To import children of a specific node from another file, use:
 ```
-#include some_other_file.zml#some_node
-#include some_other_file.zml#some_node/some_child
-#include some_other_file.zml#some_node/#3 // includes the third child of some_node
+<-- some_other_file.zml@some_node@3 // includes the third child of some_node
 ```
 
-There's even support for **#define**, if you wish to go that route:
+Previous values can be referenced to with the **@** character
 ```
-#define CONSTANT 42
+CONSTANT: 42
 
 example
 {
-  important_value = CONSTANT
+  important_value = @CONSTANT
 }
-still_important = CONSTANT
 ```
 
 Comments can be both single line and multi-line (similar to comments in C/C++):

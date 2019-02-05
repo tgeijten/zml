@@ -2,7 +2,7 @@
 ZSON is a **concise-yet-readable file format** for storing program data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
 
 ## Objectives
-* **Concise** -- nobody likes to type too much
+* **Concise** -- nobody likes too much typing
 * **Easy on the eyes** -- designed for reading and writing by humans
 * **Easy to parse** -- a fully featured ZSON parser can be written in <100 lines of code
 * **Agnostic about data types** -- your code knows how to interpret your data, so everything is a string

@@ -1,5 +1,5 @@
 # ZSON
-ZSON is a concise-yet-readable file format for storing data. I'ts like JSON, but without the cruft.
+ZSON is a concise-yet-readable file format for storing data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
 
 ## Objectives
 * Concise
@@ -33,29 +33,24 @@ While the corresponding JSON looks like this:
 }
 ```
 
-When needed, ZSON can become super space-efficient without changing any of parsing rules:
-```
-example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
-```
-
 ## Features
-#### Include other files
+### Including other files
 ZSON has language-level support for *including* other files at any place in the hierarchy:
 ```
 example {
   # Include values in-place from another file
-  <<< some_other_file.zml  >>>
+  <<< some_other_file.zson  >>>
 }
 ```
 
 To import children of a specific node from another file, use:
 ```
 # Includes the second child of example/properties
-<<< example.zml@example/properties/@2 >>>
+<<< example.zson@example/properties/@2 >>>
 ```
 
-#### Reference items
-Previously defined values can be referenced to with the **@** character
+### Referencing items
+Previously defined values or nodes can be referenced to with the **@** character
 ```
 my_constant: 42
 
@@ -63,8 +58,8 @@ important_value = @my_constant
 another_important_value = @my_constant
 ```
 
-#### Comments
-Comments can be both single line and multi-line (similar to comments in C/C++):
+### Comments
+Comments can be both single line and multi-line:
 ```
 example {
   # Single-line comment
@@ -78,7 +73,7 @@ example {
 }
 ```
 
-#### Special characters and whitespace
+### Special characters and whitespace
 Finally, special characters are supported through backslashes and quotes, and multi-line text is also supported:
 ```
 example {
@@ -86,6 +81,12 @@ example {
   also = "These characters need to be placed in quotes: { } [ ] # #{ #} @ <<< >>>"
   special = "Special \"characters\" require a \\"
 }
+```
+
+### Compact notation for serialization / deserialization
+When needed, ZSON can become pretty space-efficient without changing any of parsing rules:
+```
+example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
 ```
 
 ## Why ZSON?

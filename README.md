@@ -1,12 +1,12 @@
 # ZSON
-ZSON is a concise-yet-readable file format for storing data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
+ZSON is a **concise-yet-readable file format** for storing program data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
 
 ## Objectives
-* **Concise** -- because typing sucks
-* **Easy on the eyes** -- ZSON is designed for reading and editing by humans
+* **Concise** -- because nobody likes to type more than they have to 
+* **Easy on the eyes** -- designed for reading and writing by humans
 * **Easy to parse** -- a full featured parser can be written in <100 lines of code
 * **Agnostic about data types** -- your code knows how to interpret your data, so everything is a string
-* **Language-level support for includes and references** -- distributing your configuration across multiple files
+* **Language-level support for includes and references** -- distribute your configuration across multiple files
 
 ## Example
 ZSON looks like this:
@@ -21,7 +21,7 @@ example {
 }
 ```
 
-While the corresponding JSON looks like this:
+JSON, on the other hand, looks like this:
 ```
 "example": {
   "name": "Spacy Name",
@@ -33,7 +33,14 @@ While the corresponding JSON looks like this:
 }
 ```
 
-## Features
+## Features and Specification
+* ZSON files are valid UTF-8 documents
+* ZSON keys are case-sensitive
+* Whitespace means tab ('\t', 0x09) or space (0x20)
+* Newline means LF ('\n', 0x0A) or CR ('\r', 0x0D) or CRLF (0x0D0A)
+* Values containing whitespace or special characters must be surrounded by double-quotes ("")
+* Special characters can be written using the '\' character, only when surrounded by double-quotes
+
 ### Including other files
 ZSON has language-level support for *including* other files at any place in the hierarchy:
 ```

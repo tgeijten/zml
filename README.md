@@ -1,5 +1,5 @@
-# What is ZML?
-ZML is a concise-yet-readable file format for storing data. This is what it looks like:
+# What is zson?
+zson is a concise-yet-readable file format for storing data. This is what it looks like:
 
 ```
 example {
@@ -12,34 +12,30 @@ example {
 }
 ```
 
-ZML has language-level support for *including* other files at any place in the hierarchy:
+zson has language-level support for *including* other files at any place in the hierarchy:
 ```
 # This is a comment
 example {
   # Include values from another file
-  <-- some_other_file.zml 
+  <<< some_other_file.zml  >>>
 }
 ```
 
 To import children of a specific node from another file, use:
 ```
 # Includes the second child of example/properties
-<-- example.zml@example/properties/@2
+<<< example.zml@example/properties/@2 >>>
 ```
 
-Previous values can be referenced to with the **@** character
+Previously defined values can be referenced to with the **@** character
 ```
 my_constant: 42
 
-example
-{
-  important_value = @my_constant
-}
-
-another_important_value = @example/important_value
+important_value = @my_constant
+another_important_value = @my_constant
 ```
 
-When needed, ZML can become space-efficient without changing any of parsing rules:
+When needed, zson can become space-efficient without changing any of parsing rules:
 ```
 example{name:"Spacy Name" age:42 hierarchy{fruits[apple pear banana] position{x:10 y:20 z:30}}
 ```
@@ -70,7 +66,7 @@ example {
 }
 ```
 
-# Why ZML?
+# Why zson?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
 Yes, one would say so. But all alternatives have something not quite right:

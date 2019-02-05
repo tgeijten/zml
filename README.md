@@ -28,7 +28,7 @@ While the corresponding JSON looks like this:
   "age": 42,
   "properties": {
     "fruits": [ "apple", "pear", "banana" ],
-    "position": { "x": 10 "y": 20 "z": 30 }
+    "position": { "x": 10, "y": 20, "z": 30 }
   }
 }
 ```

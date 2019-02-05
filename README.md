@@ -2,11 +2,11 @@
 ZSON is a concise-yet-readable file format for storing data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
 
 ## Objectives
-* Concise
-* Easy on the eyes
-* Easy to parse
-* Agnostic about data types
-* Language-level support for includes and references
+* **Concise** -- because typing sucks
+* **Easy on the eyes** -- ZSON is designed for reading and editing by humans
+* **Easy to parse** -- a full featured parser can be written in <100 lines of code
+* **Agnostic about data types** -- your code knows how to interpret your data, so everything is a string
+* **Language-level support for includes and references** -- distributing your configuration across multiple files
 
 ## Example
 ZSON looks like this:

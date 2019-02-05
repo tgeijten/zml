@@ -2,9 +2,9 @@
 ZSON is a **concise-yet-readable file format** for storing program data. It's like JSON, but without the cruft. ZSON uses whitespace to separate items, and requires quotes only in special cases.
 
 ## Objectives
-* **Concise** -- because nobody likes to type more than they have to 
+* **Concise** -- nobody likes to type too much
 * **Easy on the eyes** -- designed for reading and writing by humans
-* **Easy to parse** -- a full featured parser can be written in <100 lines of code
+* **Easy to parse** -- a fully featured ZSON parser can be written in <100 lines of code
 * **Agnostic about data types** -- your code knows how to interpret your data, so everything is a string
 * **Language-level support for includes and references** -- distribute your configuration across multiple files
 
@@ -96,7 +96,8 @@ When needed, ZSON can become pretty space-efficient without changing any of pars
 example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
 ```
 
-## Why ZSON?
+## Frequently asked questions (FAQ)
+### Why?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
 Yes, one would say so. But all alternatives have something not quite right -- apart from not supporting includes:
@@ -113,3 +114,8 @@ Yes, one would say so. But all alternatives have something not quite right -- ap
 | Easy to edit        | -   | +    | ++   | ++   | +    | **++** |
 | Simple to parse     | -   | +    | +/-  | --   | +    | **++** |
 | Include other files | --  | --   | --   | --   | --   | **++** |
+
+### Performance
+*If everything is a string, doesn't that make everything really slow?*
+
+No, it really doesn't. Casting from string to numbers or anything else is really fast these days. Plus, this approach allows the implementation to simply keep all the data in a single block of memory, which makes it super cache-friendly.

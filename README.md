@@ -46,7 +46,7 @@ example {
 ```
 
 ### Comments
-Comments can be both single line and multi-line:
+Comments can be both single line (`#`) and multi-line (`##`):
 ```
 example {
   # Single-line comment
@@ -91,13 +91,14 @@ example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=
 ### Why?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
-Yes, one would say so. But all alternatives have something not quite right -- apart from not supporting includes:
-* **XML** no explanation needed, right?
-* **JSON** lots of superfluous quotes and comma's
-* **CSON** Gets the idea, but still needs to much quotes and tabs
-* **YAML** is just very hard to parse
+Yes, one would think so. But all alternatives have something not quite right (apart from not supporting includes):
+* **XML** is really verbose and hard to edit
+* **JSON** has lots of superfluous quotes and comma's
+* **CSON** gets the idea, but still needs too much quotes and tabs
+* **YAML** is pretty difficult to parse
 * **TOML** uses `[parent.child]` for child nodes, not suitable for deep hierarchies
 
+Here's a table with a completely objective comparison:
 | Feature             | XML | JSON | CSON | YAML | TOML | **ZSON**|
 | --------            | --- | ---- | ---- | ---- | ---- | ---- |
 | Easy on the eyes    | --  | +    | ++   | +    | ++   | **++** |

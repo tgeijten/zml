@@ -99,6 +99,7 @@ Yes, one would think so. But all alternatives have something not quite right (ap
 * **TOML** uses `[parent.child]` for child nodes, not suitable for deep hierarchies
 
 Here's a table with a completely objective comparison:
+
 | Feature             | XML | JSON | CSON | YAML | TOML | **ZSON**|
 | --------            | --- | ---- | ---- | ---- | ---- | ---- |
 | Easy on the eyes    | --  | +    | ++   | +    | ++   | **++** |

@@ -31,10 +31,10 @@ JSON, on the other hand, looks like this:
 ## Specification
 * ZML files are valid UTF-8 documents
 * ZML keys and values are case-sensitive
-* Newline means LF ('\n', 0x0A) or CR ('\r', 0x0D) or CRLF (0x0D0A)
-* Whitespace means tab ('\t', 0x09), space (0x20) or Newline
-* Values containing whitespace or special characters must be surrounded by double-quotes ("")
-* Inside double quotes, special characters are preceded by a backslash: "\n \r \t \\" \\\\"
+* Newline means LF (`\n`, 0x0A) or CR (`\r`, 0x0D) or CRLF (0x0D0A)
+* Whitespace means tab (`\t`, 0x09), space (0x20) or Newline
+* Values containing whitespace or special characters must be surrounded by double-quotes (`""`)
+* Inside double quotes, special characters are preceded by a backslash: `"\n \r \t \" \\"`
 
 ## Features
 ### Everything is a string
@@ -59,7 +59,7 @@ example {
   }
 }
 ```
-Multi-line comments (##) find the first '{' or '\[' character on the same line, and comment out everything until and including the matching closing bracket.
+Multi-line comments (`##`) find the first `{` or `[` character on the same line, and comment out everything until and including the matching closing bracket.
 
 ### Including other files
 ZML has language-level support for *including* other files at any place in the hierarchy, allowing you to compose your data from multiple files:
@@ -87,7 +87,7 @@ scene_objects {
 ```
 
 ### Referencing items
-Previously defined values or nodes can be referenced to with the **@** character, so you can tune multiple parameters at once.
+Previously defined values or nodes can be referenced to with the `@` character, so you can tune multiple parameters at once.
 ```
 my_constant: 42
 important_value = @my_constant

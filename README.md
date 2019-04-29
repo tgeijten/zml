@@ -124,10 +124,10 @@ Here's a table with a completely objective comparison:
 ### Performance
 *If everything is a string, doesn't that make everything really slow?*
 
-No, it really doesn't. Casting from string to numbers or anything else is really fast on modern processors. Plus, this approach allows the implementation to simply keep all the data in a single block of memory, which makes it super cache-friendly.
+No, it really doesn't. Casting from string to numbers or anything else is really fast on modern processors. Plus, this approach allows an implementation to easily keep all the data in contiguous memory, which makes it super cache-friendly.
 
 ### What does ZML mean?
-ZML is an acronym for Zeeky String-based Object Notation. Now you know :-)
+ZML is an acronym for Zeeky Minimal Language. Now you know :-)
 
 ### What are the ZML objectives?
 * **Concise** -- minimize redundant characters

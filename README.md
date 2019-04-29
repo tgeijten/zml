@@ -1,5 +1,7 @@
 # ZML
-ZML is a **concise-yet-readable file format** for storing program data. It's similar to JSON or XML, but easier on the eyes and more concise. ZML uses whitespace to separate items, and requires quotes only in special cases. A fully featured parser of the ZML format is included in the [xo library](https://github.com/tgeijten/xo).
+ZML is a **concise-yet-readable file format** for storing program data. It's similar to JSON or XML, but easier on the eyes and more concise. ZML uses whitespace to separate items, and requires quotes only in special cases.
+
+A fully featured parser of the ZML format is included in the [xo library](https://github.com/tgeijten/xo).
 
 ## Example
 ZML looks like this:
@@ -28,11 +30,11 @@ JSON, on the other hand, looks like this:
 
 ## Specification
 * ZML files are valid UTF-8 documents
-* ZML keys are case-sensitive
-* Whitespace means tab ('\t', 0x09) or space (0x20)
+* ZML keys and values are case-sensitive
 * Newline means LF ('\n', 0x0A) or CR ('\r', 0x0D) or CRLF (0x0D0A)
+* Whitespace means tab ('\t', 0x09), space (0x20) or Newline
 * Values containing whitespace or special characters must be surrounded by double-quotes ("")
-* Special characters can be written using the '\\' character, only when surrounded by double-quotes
+* Inside double quotes, special characters are preceded by a backslash: "\n \r \t \\" \\\\"
 
 ## Features
 ### Everything is a string
@@ -42,16 +44,6 @@ example {
   "Keys or values with whitespace" = "must have quotes"
   also = "These characters need to be placed in quotes: { } [ ] # @ << >>"
   special = "Special \"characters\" require a \\"
-}
-```
-
-### Keys can be identical
-ZML allows for identical keys, so you can define groups of objects with multiple instances of the same type:
-```
-scene_objects {
-  cube { size = 1 }
-  sphere { size = 1 }
-  sphere { size = 0.5 }
 }
 ```
 
@@ -84,8 +76,18 @@ To import children of a specific node from another file, use:
 << example.zson@example/properties/@2 >>
 ```
 
+### Identical keys are allowed
+ZML allows keys in a group to be identical, so you can define groups of objects with multiple instances of the same type:
+```
+scene_objects {
+  cube { size = 1 }
+  sphere { size = 1 }
+  sphere { size = 0.5 }
+}
+```
+
 ### Referencing items
-Previously defined values or nodes can be referenced to with the **@** character
+Previously defined values or nodes can be referenced to with the **@** character, so you can tune multiple parameters at once.
 ```
 my_constant: 42
 important_value = @my_constant
@@ -93,7 +95,7 @@ another_important_value = @my_constant
 ```
 
 ### Compact notation
-When needed, ZML can become pretty space-efficient without changing any of parsing rules (useful for serialization / deserialization):
+When needed, ZML can become pretty space-efficient without changing any of parsing rules (useful for streaming):
 ```
 example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
 ```
@@ -102,9 +104,9 @@ example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=
 ### Why?
 *There's already so many languages like this! Why design ANOTHER one instead of using any of the existing languages?*
 
-Yes, one would think so. But all alternatives have something not quite right (apart from not supporting includes):
+Yes, one would think so. But all alternatives have something not quite right (apart from not supporting includes and references):
 * **XML** is really verbose and hard to edit
-* **JSON** has lots of superfluous quotes and comma's, does not allow identical keys
+* **JSON** has lots of superfluous quotes and comma's and does not allow identical keys
 * **CSON** gets the idea, but still needs too much quotes and tabs and does not allow identical keys
 * **YAML** is pretty difficult to parse and isn't great for deep hierarchies
 * **TOML** uses `[parent.child]` for child nodes, not suitable for deep hierarchies
@@ -128,7 +130,7 @@ No, it really doesn't. Casting from string to numbers or anything else is really
 ZML is an acronym for Zeeky String-based Object Notation. Now you know :-)
 
 ### What are the ZML objectives?
-* **Concise** -- nobody likes too much typing
+* **Concise** -- minimize redundant characters
 * **Easy on the eyes** -- designed for reading and writing by humans
 * **Easy to parse** -- a fully featured ZML parser can be written in <100 lines of code
 * **Agnostic about data types** -- your code knows how to interpret your data, so everything is a string

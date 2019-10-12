@@ -1,31 +1,44 @@
 # ZML
-ZML is a **concise-yet-readable file format** for storing program data. It's similar to JSON or XML, but easier on the eyes and more concise. ZML uses whitespace to separate items, and requires quotes only in special cases.
+ZML is a **concise-yet-readable file format** for storing data. Its goal is to be similar to JSON or XML, but more concise and easier on the eyes. Key features include:
+* No redundant commas or quotes, items are separated by **whitespace**
+* Files can **include** other ZML files
+* Support for global reusable **constants**
 
 A fully featured parser of the ZML format is included in the [xo library](https://github.com/tgeijten/xo).
 
 ## Example
-ZML looks like this:
+ZML:
 ```
-example {
-  name = "Spacy Name"
-  age = 42
-  properties {
-    fruits [ apple pear banana ]
-    position { x = 10 y = 20 z = 30 }
-  }
+age = 42
+name = "Spacey Name"
+properties {
+  fruits [ apple pear banana ]
+  position { x = 10 y = 20 z = 30 }
 }
 ```
 
-JSON, on the other hand, looks like this:
+JSON:
 ```
-"example": {
-  "name": "Spacy Name",
+{
   "age": 42,
+  "name": "Spacey Name",
   "properties": {
     "fruits": [ "apple", "pear", "banana" ],
     "position": { "x": 10, "y": 20, "z": 30 }
   }
 }
+```
+
+XML:
+```
+<root>
+  <age>42</age>
+  <name>Spacey Name</name>
+  <properties>
+    <fruits>apple pear banana</fruits>
+    <position x = "10" y = "20" z = "30"/>
+  </properties>
+</root>
 ```
 
 ## Specification
@@ -47,21 +60,7 @@ example {
 }
 ```
 
-### Comments
-Comments can be both single line (`#`) and multi-line (`##`):
-```
-example {
-  # Single-line comment
-  name = "Spacy Name" # Trailing comment
-  ## all_this_stuff {
-    has_been [ 1 12 67 ]
-    commented_out { x = 10 y = 20 z = 30 }
-  }
-}
-```
-Multi-line comments (`##`) find the first `{` or `[` character on the same line, and comment out everything until and including the matching closing bracket.
-
-### Including other files
+### Including files
 ZML has language-level support for *including* other files at any place in the hierarchy, allowing you to compose your data from multiple files:
 ```
 example {
@@ -72,8 +71,32 @@ example {
 
 To import children of a specific node from another file, use:
 ```
-# Includes the second child of example/properties
-<< example.zson@example/properties/@2 >>
+<< example.zml@some_node >> # Includes "some_node" from example.zml
+<< example.zml@parent_node/@3 >> # Includes the third child of "parent_node"
+```
+
+### Constants
+You can set multiple keys to one specific value by using **constants**. These are declared within the current scope using the `$` character:
+```
+objects {
+  $some_constant = 42
+  o1 = $some_constant
+  o2 = $some_constant
+  o3 = $some_constant
+}
+```
+
+### Comments
+Comments can be both single line (`#`) and multi-line (`###`):
+```
+example {
+  # Single-line comment
+  name = "Spacy Name" # Trailing comment
+  ### all_this_stuff {
+    has_been [ 1 12 67 ]
+    commented_out { x = 10 y = 20 z = 30 }
+  } ###
+}
 ```
 
 ### Identical keys are allowed
@@ -86,18 +109,10 @@ scene_objects {
 }
 ```
 
-### Referencing items
-Previously defined values or nodes can be referenced to with the `@` character, so you can tune multiple parameters at once.
-```
-my_constant: 42
-important_value = @my_constant
-another_important_value = @my_constant
-```
-
 ### Compact notation
-When needed, ZML can become pretty space-efficient without changing any of parsing rules (useful for streaming):
+ZML can get pretty space-efficient without changing any of parsing rules (useful for streaming):
 ```
-example{name="Spacy Name" age=42 hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
+age=42 name="Spacy Name" hierarchy{fruits[apple pear banana] position{x=10 y=20 z=30}}
 ```
 
 ## Frequently asked questions (FAQ)
